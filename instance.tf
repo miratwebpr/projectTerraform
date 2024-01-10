@@ -42,13 +42,13 @@ resource "aws_security_group" "projectSG_instance" {
                 protocol = "tcp"
                 security_groups = [aws_security_group.projectSG_load_balancer.id]
         }
-        ingress {
-                description = "ssh"
-                from_port = 22
-                to_port = 22
-                protocol = "tcp"
-                cidr_blocks = ["0.0.0.0/0"]
-        }
+        # ingress {
+        #         description = "ssh"
+        #         from_port = 22
+        #         to_port = 22
+        #         protocol = "tcp"
+        #         cidr_blocks = ["0.0.0.0/0"]
+        # }
         egress {
                 description = "outbound access"
                 from_port = 0
@@ -71,14 +71,27 @@ resource "aws_security_group" "projectSG_RDS" {
         }
 }
 
+data "template_file" "init" {
+        template = "${filebase64("${path.module}/user_data.sh")}"
+        vars = {
+                bucket_name = "${aws_s3_bucket.datatechtorialbucket.id}"
+                db_name = var.db_info[0]
+                db_user = var.db_info[1]
+                db_password = var.db_info[2]
+                db_endpoint = aws_rds_cluster.project.endpoint
+        }
+}
+
 resource "aws_launch_template" "projectLT" {
         name = "projectLT"
         instance_type = "t2.micro"
         image_id = "ami-0c7217cdde317cfec"
-        user_data = filebase64("${path.module}/user_data.sh")
+        user_data = data.template_file.init.rendered
         vpc_security_group_ids = [aws_security_group.projectSG_instance.id]
-        key_name = "local"
-	iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+        # key_name = "local"
+        iam_instance_profile {
+                name = aws_iam_instance_profile.ec2_profile.name
+        }
         block_device_mappings {
             device_name = "/dev/sdf"
                 ebs {
