@@ -22,3 +22,8 @@ variable "private_subnet_cidr_blocks" {
   type    = list(string)
   default = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
+
+variable "db_info" {
+    type = list(string)
+    default = ["group2_db", "group2", "techtorial123"]
+}

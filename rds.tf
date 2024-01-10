@@ -8,14 +8,13 @@ resource "aws_rds_cluster" "project" {
   storage_type              = "io1"
   allocated_storage         = 100
   iops                      = 1000
-  master_username           = "test"
-  master_password           = "Techtorial123"
-  database_name             = "project"
+  master_username           = var.db_info[1]
+  master_password           = var.db_info[2]
+  database_name             = var.db_info[0]
   db_subnet_group_name      = aws_db_subnet_group.private_subnet.name
   skip_final_snapshot       = true
-  enable_http_endpoint      = true
-  # vpc_security_group_ids = aws_security_group.projectSG_RDS.id  
-  # Uncomment it when deploying on the final stage. It will automatically assign security group to this cluster.
+ # enable_http_endpoint      = true
+  vpc_security_group_ids    = [aws_security_group.projectSG_RDS.id]
 }
 
 resource "aws_db_subnet_group" "private_subnet" {
