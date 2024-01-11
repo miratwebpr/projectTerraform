@@ -42,13 +42,13 @@ resource "aws_security_group" "projectSG_instance" {
                 protocol = "tcp"
                 security_groups = [aws_security_group.projectSG_load_balancer.id]
         }
-        # ingress {
-        #         description = "ssh"
-        #         from_port = 22
-        #         to_port = 22
-        #         protocol = "tcp"
-        #         cidr_blocks = ["0.0.0.0/0"]
-        # }
+        ingress {
+                description = "ssh"
+                from_port = 22
+                to_port = 22
+                protocol = "tcp"
+                cidr_blocks = ["0.0.0.0/0"]
+        }
         egress {
                 description = "outbound access"
                 from_port = 0
@@ -78,7 +78,8 @@ data "template_file" "init" {
                 db_name = var.db_info[0]
                 db_user = var.db_info[1]
                 db_password = var.db_info[2]
-                db_endpoint = aws_rds_cluster.project.endpoint
+                #db_endpoint = aws_rds_cluster.project.endpoint
+                db_endpoint = aws_db_instance.project.endpoint
         }
 }
 
@@ -88,7 +89,7 @@ resource "aws_launch_template" "projectLT" {
         image_id = "ami-0c7217cdde317cfec"
         user_data = data.template_file.init.rendered
         vpc_security_group_ids = [aws_security_group.projectSG_instance.id]
-        # key_name = "local"
+        key_name = "local"
         iam_instance_profile {
                 name = aws_iam_instance_profile.ec2_profile.name
         }
@@ -107,7 +108,7 @@ resource "aws_autoscaling_group" "projectASG" {
         desired_capacity = 3
         max_size = 5
         min_size = 1
-
+        target_group_arns = [aws_lb_target_group.test.arn]
         launch_template {
             id = aws_launch_template.projectLT.id
             version = "$Latest"
