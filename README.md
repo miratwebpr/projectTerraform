@@ -25,7 +25,7 @@ Before you begin, ensure that you have the following prerequisites:
 4. Familiarity with the basics of Terraform, including how to write Terraform configuration files (`.tf`).
 5. Install GitHub.
 6. Have Visual Studio Code or similar IDE. 
-7. Connect to remote host using ssh keys. Please use the ![steps here](.https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)to create AWS EC2 key pair.
+7. Connect to remote host using ssh keys. Please use the [steps here](.https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)to create AWS EC2 key pair.
  
 ## Steps
  
