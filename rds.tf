@@ -13,7 +13,7 @@ resource "aws_rds_cluster" "project" {
   database_name             = var.db_info[0]
   db_subnet_group_name      = aws_db_subnet_group.private_subnet.name
   skip_final_snapshot       = true
-  vpc_security_group_ids = [aws_security_group.projectSG_RDS.id]  
+  vpc_security_group_ids = [aws_security_group.projectSG_RDS.id]
   # Uncomment it when deploying on the final stage. It will automatically assign security group to this cluster.
 }
 

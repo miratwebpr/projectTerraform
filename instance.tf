@@ -122,6 +122,7 @@ data "template_file" "init" {
                 db_endpoint = local.wanted_str_endpoint
         }
 }
+
 locals {
         #UNCOMMENT FOR TESTING PURPOSE
         #sg = aws_db_instance.project.endpoint
@@ -130,6 +131,7 @@ locals {
         split_sg = split(":", local.sg)
         wanted_str_endpoint = "${local.split_sg[0]}"
 }
+
 resource "aws_launch_template" "projectLT" {
         name = "projectLT"
         instance_type = "t2.micro"
@@ -148,9 +150,6 @@ resource "aws_launch_template" "projectLT" {
                 }
         }
 }
-# resource "aws_instance" "publicTEST_instance"{
-        
-# }
 
 resource "aws_autoscaling_group" "projectASG" {
         name = "projectASG"

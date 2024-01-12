@@ -1,10 +1,10 @@
-terraform {
-  backend "s3" {
-    bucket                  = "stateprojectgroup2"
-    key                     = "terraform.tfstate"   
-    region                  = "us-east-1"
-  }
-}
+# terraform {
+#   backend "s3" {
+#     bucket                  = "stateprojectgroup2"
+#     key                     = "terraform.tfstate"   
+#     region                  = "us-east-1"
+#   }
+# }
 
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   bucket = aws_s3_bucket.datatechtorialbucket.id
@@ -27,6 +27,7 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 
 resource "aws_s3_bucket" "datatechtorialbucket" {
     bucket = "datatechtorialbucket"
+    force_destroy = true
 }
 
 resource "aws_s3_bucket_acl" "datatechtorialbucket_acl" {
@@ -77,7 +78,7 @@ resource "aws_iam_policy" "s3accessforec2_policy" {
         Version    = "2012-10-17"
             Statement = [
                 {
-                    Action   = ["s3:ListBucket"]
+                    Action   = ["s3:ListBucket", "s3:PutBucketPolicy"]
                     Effect   = "Allow"
                     Resource = [aws_s3_bucket.datatechtorialbucket.arn]
                 },
@@ -99,3 +100,4 @@ resource "aws_iam_instance_profile" "ec2_profile"{
     name = "ec2_profile"
     role = aws_iam_role.s3accessforec2_role.name
 }
+
