@@ -19,13 +19,13 @@ Here is a step-by-step guide to deploying this architecture on Amazon Web Servic
  
 Before you begin, ensure that you have the following prerequisites:
  
-1. AWS account, IAM user with proper permission, and configured AWS CLI. See the ![step here](.https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html) on how to setup the AWS Command Line Interface.
+1. AWS account, IAM user with proper permission, and configured AWS CLI. See the https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-envvars.html on how to setup the AWS Command Line Interface.
 2. Terraform installed on your local machine. You can download Terraform from the official website: https://www.terraform.io/downloads.html.
 3. Basic knowledge of AWS services such as EC2, VPC, ELB, ASG, and RDS.
 4. Familiarity with the basics of Terraform, including how to write Terraform configuration files (`.tf`).
 5. Install GitHub.
 6. Have Visual Studio Code or similar IDE. 
-7. Connect to remote host using ssh keys. Please use the ![steps here](.https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)to create AWS EC2 key pair.
+7. Connect to remote host using ssh keys. Please use the foolowing link https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html to create AWS EC2 key pair.
  
 ## Steps
  
