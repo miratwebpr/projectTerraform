@@ -20,15 +20,22 @@ chmod -R 770 blogproject
 # Change to the directory of your Django project
 cd blogproject/src
 
-sed 's/blogdb/${db_name}' ./cblog/settings.py 
+# dbname="${db_name}"
+# dbuser="${db_user}"
+# dbpassword="${db_password}"
+# dbendpoint="${db_endpoint}"
+# bucketname="${bucket_name}"
 
-sed 's/admin/${db_user}' ./cblog/settings.py 
+sed -i "s/blogdb/${db_name}/g" ./cblog/settings.py
 
-sed 's/techtorialmirat/${db_password}' ./cblog/settings.py 
+sed -i "s/mirat/${db_user}/g" ./cblog/settings.py 
 
-sed 's/blog-db1.c6j8ch9tppeu.us-east-1.rds.amazonaws.com/${db_endpoint}' ./cblog/settings.py 
+sed -i "s/PASSWORDPLACEHOLDER/${db_password}/g" ./cblog/settings.py 
 
-sed 's/blogproject112/${bucket_name}' ./cblog/settings.py 
+sed -i "s/blog-db1.c6j8ch9tppeu.us-east-1.rds.amazonaws.com/${db_endpoint}/g" ./cblog/settings.py 
+
+sed -i "s/blogproject112/${bucket_name}/g" ./cblog/settings.py 
+
 
 # Optional: Create and activate a virtual environment
 virtualenv venv

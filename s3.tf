@@ -5,8 +5,53 @@ terraform {
     region                  = "us-east-1"
   }
 }
+
+resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
+  bucket = aws_s3_bucket.datatechtorialbucket.id
+  policy =  <<EOF
+            {
+                "Id": "Policy1704934700978",
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                    "Sid": "Stmt1704934699558",
+                    "Action": "s3:*",
+                    "Effect": "Allow",
+                    "Resource": "${aws_s3_bucket.datatechtorialbucket.arn}/*",
+                    "Principal": "*"
+                    }
+                ]
+            }
+    EOF
+}
+
 resource "aws_s3_bucket" "datatechtorialbucket" {
     bucket = "datatechtorialbucket"
+}
+
+resource "aws_s3_bucket_acl" "datatechtorialbucket_acl" {
+  depends_on = [
+    aws_s3_bucket_ownership_controls.datatechtorialbucket_OC,
+    aws_s3_bucket_public_access_block.datatechtorialbucket_PAB,
+  ]
+
+  bucket = aws_s3_bucket.datatechtorialbucket.id
+  acl    = "public-read-write"
+}
+resource "aws_s3_bucket_ownership_controls" "datatechtorialbucket_OC" {
+  bucket = aws_s3_bucket.datatechtorialbucket.id
+  rule {
+    object_ownership = "BucketOwnerPreferred"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "datatechtorialbucket_PAB" {
+  bucket = aws_s3_bucket.datatechtorialbucket.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
 
 resource "aws_iam_role" "s3accessforec2_role" {
