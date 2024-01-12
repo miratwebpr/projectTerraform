@@ -123,6 +123,9 @@ data "template_file" "init" {
         }
 }
 locals {
+        #UNCOMMENT FOR TESTING PURPOSE
+        #sg = aws_db_instance.project.endpoint
+        #COMMENT FOR TESTING PURPOSE
         sg = aws_rds_cluster.project.endpoint
         split_sg = split(":", local.sg)
         wanted_str_endpoint = "${local.split_sg[0]}"
