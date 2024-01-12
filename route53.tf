@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "main" {
-  name = "salokhiddin.link"   # Replace it with your domain name
+  name = "mironthis.link"   # Replace it with your domain name
 }
 
 resource "aws_route53_record" "writer" {

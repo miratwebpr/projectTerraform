@@ -24,9 +24,6 @@ resource "aws_db_subnet_group" "private_subnet" {
     name = "private subnet group"
   }
 }
-resource "aws_route53_zone" "main" {
-  name = "mironthis.link"   # Replace it with your domain name
-}
 
 # resource "aws_db_instance" "project" {
 #   allocated_storage    = 20
@@ -40,10 +37,3 @@ resource "aws_route53_zone" "main" {
 #   db_subnet_group_name      = aws_db_subnet_group.private_subnet.name
 #   vpc_security_group_ids    = [aws_security_group.projectSG_RDS.id]
 # }
-resource "aws_db_subnet_group" "private_subnet" {
-  name        = "private_subnet_group"
-  subnet_ids  = aws_subnet.private_subnet[*].id
-  tags = {
-    name = "private subnet group"
-  }
-}
