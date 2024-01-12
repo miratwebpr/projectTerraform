@@ -25,7 +25,7 @@ resource "aws_db_subnet_group" "private_subnet" {
   }
 }
 resource "aws_route53_zone" "main" {
-  name = "salokhiddin.link"   # Replace it with your domain name
+  name = "mironthis.link"   # Replace it with your domain name
 }
 
 resource "aws_route53_record" "writer" {
