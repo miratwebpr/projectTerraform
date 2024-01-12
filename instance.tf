@@ -119,12 +119,14 @@ data "template_file" "init" {
                 db_name = var.db_info[0]
                 db_user = var.db_info[1]
                 db_password = var.db_info[2]
-                #db_endpoint = aws_rds_cluster.project.endpoint
                 db_endpoint = local.wanted_str_endpoint
         }
 }
 locals {
-        sg = aws_db_instance.project.endpoint
+        #UNCOMMENT FOR TESTING PURPOSE
+        #sg = aws_db_instance.project.endpoint
+        #COMMENT FOR TESTING PURPOSE
+        sg = aws_rds_cluster.project.endpoint
         split_sg = split(":", local.sg)
         wanted_str_endpoint = "${local.split_sg[0]}"
 }
@@ -146,9 +148,9 @@ resource "aws_launch_template" "projectLT" {
                 }
         }
 }
-#resource "aws_instance" "publicTEST_instance"{
- #       
-#}
+# resource "aws_instance" "publicTEST_instance"{
+        
+# }
 
 resource "aws_autoscaling_group" "projectASG" {
         name = "projectASG"

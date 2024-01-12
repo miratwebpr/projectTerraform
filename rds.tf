@@ -24,6 +24,9 @@ resource "aws_db_subnet_group" "private_subnet" {
     name = "private subnet group"
   }
 }
+resource "aws_route53_zone" "main" {
+  name = "mironthis.link"   # Replace it with your domain name
+}
 
 # resource "aws_db_instance" "project" {
 #   allocated_storage    = 20
