@@ -9,7 +9,7 @@ The architecture includes an Amazon Virtual Private Cloud (VPC), Elastic Load Ba
 - In the Application tier, we will create an internet facing load balancer to direct internet traffic to an autoscaling group with launch template in the private subnets. We used the user data to clone Django project from GitHub into S3 bucket, establish the database connection credentials, and finally deploy Django project. 
 - In the Database tier, we will have another layer of private subnets hosting a MySQL database which will  eventually be accessed by Django project. -->
  
-![Architecture diagram]()
+![Architecture diagram](https://github.com/miratwebpr/projectTerraform/blob/main/Untitled%20Diagram.drawio.png)
  
  
 Here is a step-by-step guide to deploying this architecture on Amazon Web Services (AWS) using Terraform.
@@ -42,22 +42,31 @@ Follow these step-by-step instructions to deploy a three-tier architecture on AW
    ```
    cd projectTerraform
    ```
-<!--  
-### Step 2: Configure S3 bucket for state file storage
-1. Sign in to your AWS account.
-2. Open the Amazon S3 service.
-3. Click "Create Bucket" and configure basic settings like name and region.
-4. Optionally, enable features like versioning, logging, and encryption.
-5. Review settings and click "Create bucket." -->
 
-### (Optional) Step 3: Configure Terraform Variables
+### Step 2: S3 bucket
+- Comment out backend s3 backend in s3.tf
+
+### Step 3: Configure Terraform Variables and Domain name.
  
 1. Open the project directory in a text editor.
 2. Locate the Terraform configuration file named `var.tf”. 
 3. Modify the values of the variables according to your requirements.
    (ex. Change region, availability zones, or database info as needed)
+4. Change your domain in route53.tf
+5. Change the bucket name in s3.tf from datatechtorialbucket to your NAME
+6. Change str 128 in instance.tf from
+   ```
+    sg = aws_rds_cluster
+   ```
+   on
+   ```
+    sg = aws_db_instance
+   ```
 
- 
+(OPTIONAL)
+- Comment out cluster resource in rds.tf
+- Uncomment db instance creation in rds.tf
+
 ### Step 4: Initialize Terraform
  
 1. In the terminal or command prompt, navigate to the project directory., cd to the root directory ‘terraform’
