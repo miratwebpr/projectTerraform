@@ -26,27 +26,27 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 }
 
 resource "aws_s3_bucket" "datatechtorialbucket" {
-    bucket = "datatechtorialbucket"
+    bucket = "datatechtorialbucket_s3"
     force_destroy = true
 }
 
-resource "aws_s3_bucket_acl" "datatechtorialbucket_acl" {
+resource "aws_s3_bucket_acl" "datatechtorialbucket_s3_acl" {
   depends_on = [
-    aws_s3_bucket_ownership_controls.datatechtorialbucket_OC,
-    aws_s3_bucket_public_access_block.datatechtorialbucket_PAB,
+    aws_s3_bucket_ownership_controls.datatechtorialbucket_s3_OC,
+    aws_s3_bucket_public_access_block.datatechtorialbucket_s3_PAB,
   ]
 
-  bucket = aws_s3_bucket.datatechtorialbucket.id
+  bucket = aws_s3_bucket.datatechtorialbucket_s3.id
   acl    = "public-read-write"
 }
 resource "aws_s3_bucket_ownership_controls" "datatechtorialbucket_OC" {
-  bucket = aws_s3_bucket.datatechtorialbucket.id
+  bucket = aws_s3_bucket.datatechtorialbucket_s3.id
   rule {
     object_ownership = "BucketOwnerPreferred"
   }
 }
 
-resource "aws_s3_bucket_public_access_block" "datatechtorialbucket_PAB" {
+resource "aws_s3_bucket_public_access_block" "datatechtorialbucket_s3_PAB" {
   bucket = aws_s3_bucket.datatechtorialbucket.id
 
   block_public_acls       = false
