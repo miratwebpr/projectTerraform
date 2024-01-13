@@ -1,5 +1,5 @@
 data "aws_route53_zone" "main" {
-  name = "mironthis.link" # Replace it with your dns name
+  name = "atyratechtorial.link" # Replace it with your dns name
 }
 
 resource "aws_route53_record" "writer" {
