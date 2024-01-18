@@ -31,7 +31,7 @@ jobs:
         run: ls ${{ github.workspace }}
       - name: Push the code to the main branch
         run: |
-          git checkout -b mirat
+          git checkout -b superBranch
           git branch
           git config --global user.name "bitch"
           git config --global user.email "webmiratfl@gmail.com"
@@ -39,7 +39,7 @@ jobs:
           ls
           git add .
           git commit -m "Workflow test"
-          git push --set-upstream origin mirat
+          git push --set-upstream origin superBranch
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
