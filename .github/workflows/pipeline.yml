@@ -22,7 +22,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Changes directory to projectTerraform
-        run: cd projectTerraform
+        run: cd ${{ github.workspace }}/projectTerraform
       - name: Creates a folder in ubuntu
         run: mkdir myNewFolder
       - name: Copies main.tf from modules/aws-blog-module
