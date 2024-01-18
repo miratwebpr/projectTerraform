@@ -36,6 +36,7 @@ jobs:
           git config --global user.name "miratwebpr"
           git config --global user.email "webmiratfl@gmail.com"
           git pull origin main
+          ls
           git add .
           git commit -m "Workflow test"
           git push --set-upstream origin mirat
