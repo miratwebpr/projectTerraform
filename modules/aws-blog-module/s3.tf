@@ -26,7 +26,7 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
 }
 
 resource "aws_s3_bucket" "datatechtorialbucket" {
-    bucket = "datatechtorialbucket"
+    bucket = var.s3_bucket_name
     force_destroy = true
 }
 
