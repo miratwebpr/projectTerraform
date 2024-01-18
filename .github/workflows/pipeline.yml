@@ -26,7 +26,7 @@ jobs:
       - name: Creates a folder in ubuntu
         run: mkdir myNewFolder
       - name: Copies main.tf from modules/aws-blog-module
-        run: cp modules/aws-blog-module/main.tf .
+        run: cp modules/aws-blog-module/TEST.txt .
       - name: Lists all the folders and files under github.workspace
         run: ls ${{ github.workspace }}
   # This workflow contains a single job called "build"
