@@ -33,6 +33,7 @@ jobs:
         run: |
           git checkout -b mirat
           git branch
+          git pull
           git config --global user.name "miratwebpr"
           git config --global user.email "webmiratfl@gmail.com"
           git add .
