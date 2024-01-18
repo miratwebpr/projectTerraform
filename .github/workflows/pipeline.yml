@@ -31,8 +31,8 @@ jobs:
         run: ls ${{ github.workspace }}
       - name: Push the code to the main branch
         run: |
+          git checkout -b mirat
           git branch
-          git checkout mirat
           git config --global user.name "miratwebpr"
           git config --global user.email "webmiratfl@gmail.com"
           git add .
