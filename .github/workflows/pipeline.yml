@@ -33,10 +33,9 @@ jobs:
         run: |
           git checkout -b mirat
           git branch
-          git pull origin main
           git config --global user.name "miratwebpr"
           git config --global user.email "webmiratfl@gmail.com"
-          git fetch
+          git pull origin main
           git add .
           git commit -m "Workflow test"
           git push --set-upstream origin mirat
