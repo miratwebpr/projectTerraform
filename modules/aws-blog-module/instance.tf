@@ -138,7 +138,7 @@ resource "aws_launch_template" "projectLT" {
   image_id               = "ami-05fb0b8c1424f266b"
   user_data              = base64encode(data.template_file.init.rendered)
   vpc_security_group_ids = [aws_security_group.projectSG_instance.id]
-  key_name               = "local"
+#   key_name               = "local"
   iam_instance_profile {
     name = aws_iam_instance_profile.ec2_profile.name
   }
