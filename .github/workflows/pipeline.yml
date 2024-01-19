@@ -30,11 +30,11 @@ jobs:
     - name: Initialize Terraform
       run: terraform init
 
-    # - name: Format Terraform code
-    #   run: terraform fmt -check -recursive
+    - name: Format Terraform code
+      run: terraform fmt -check -recursive
 
     - name: Terraform Plan
       run: terraform plan
 
-    - name: Terraform Destroy
-      run: terraform destroy -auto-approve
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
