@@ -135,7 +135,7 @@ locals {
 resource "aws_launch_template" "projectLT" {
   name                   = "projectLT"
   instance_type          = "t2.micro"
-  image_id               = "ami-0c7217cdde317cfec"
+  image_id               = "ami-05fb0b8c1424f266b"
   user_data              = base64encode(data.template_file.init.rendered)
   vpc_security_group_ids = [aws_security_group.projectSG_instance.id]
   key_name               = "local"
