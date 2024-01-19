@@ -1,9 +1,9 @@
 resource "aws_vpc" "project_vpc" {
-  cidr_block = var.vpc_cidr_block
-  enable_dns_support = true
+  cidr_block           = var.vpc_cidr_block
+  enable_dns_support   = true
   enable_dns_hostnames = true
 
-    tags = {
+  tags = {
     Name = "project-vpc"
   }
 }
@@ -16,7 +16,7 @@ resource "aws_subnet" "public_subnet" {
   availability_zone       = element(var.availability_zones, count.index)
   map_public_ip_on_launch = true
 
-      tags = {
+  tags = {
     Name = "PublicSubnet-${count.index + 1}"
   }
 }
@@ -24,11 +24,11 @@ resource "aws_subnet" "public_subnet" {
 resource "aws_subnet" "private_subnet" {
   count = 3
 
-  vpc_id     = aws_vpc.project_vpc.id
-  cidr_block = var.private_subnet_cidr_blocks[count.index]
+  vpc_id            = aws_vpc.project_vpc.id
+  cidr_block        = var.private_subnet_cidr_blocks[count.index]
   availability_zone = element(var.availability_zones, count.index)
 
-      tags = {
+  tags = {
     Name = "PrivateSubnet-${count.index + 1}"
   }
 }
@@ -38,7 +38,7 @@ resource "aws_route_table" "public_route_table" {
 }
 
 resource "aws_route_table" "private_route_table" {
- vpc_id = aws_vpc.project_vpc.id
+  vpc_id = aws_vpc.project_vpc.id
 }
 
 resource "aws_route" "public_route" {
@@ -54,13 +54,13 @@ resource "aws_route" "private_route" {
 }
 
 resource "aws_route_table_association" "public_route_table_association" {
-  count = 3
+  count          = 3
   subnet_id      = aws_subnet.public_subnet[count.index].id
   route_table_id = aws_route_table.public_route_table.id
 }
 
 resource "aws_route_table_association" "private_route_table_association" {
-  count = 3
+  count          = 3
   subnet_id      = aws_subnet.private_subnet[count.index].id
   route_table_id = aws_route_table.private_route_table.id
 }

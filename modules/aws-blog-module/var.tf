@@ -1,17 +1,17 @@
 variable "region" {
   description = "Aws region for our project"
-  type    = string
+  type        = string
 }
 
 variable "vpc_cidr_block" {
-  type = string
+  type    = string
   default = "10.0.0.0/16"
 }
 
 variable "availability_zones" {
   description = "Availability zones for our instances and VPC"
-  type = list(string)
-  default = []
+  type        = list(string)
+  default     = []
 }
 
 variable "public_subnet_cidr_blocks" {
@@ -25,12 +25,12 @@ variable "private_subnet_cidr_blocks" {
 }
 
 variable "db_info" {
-    description = "AWS RDS(database) information for 0 - db_name, 1 - db_username, 2 - db_password"
-    type = list(string)
-    default = []
+  description = "AWS RDS(database) information for 0 - db_name, 1 - db_username, 2 - db_password"
+  type        = list(string)
+  default     = []
 }
 
 variable "s3_bucket_name" {
-    description = "A bucket name for our s3"
-    type = string
+  description = "A bucket name for our s3"
+  type        = string
 }

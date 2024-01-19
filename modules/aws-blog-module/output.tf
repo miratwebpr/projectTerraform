@@ -7,9 +7,9 @@ output "private_subnet_ids" {
 }
 
 output "vpc_id" {
-    value = aws_vpc.project_vpc.id
+  value = aws_vpc.project_vpc.id
 }
 
 output "s3_bucket_arn" {
-    value = aws_s3_bucket.datatechtorialbucket.arn
+  value = aws_s3_bucket.datatechtorialbucket.arn
 }

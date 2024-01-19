@@ -8,9 +8,9 @@ resource "aws_route53_record" "writer" {
   type    = "A"
 
   alias {
-      name                   = aws_lb.projectLB.dns_name
-      zone_id                = aws_lb.projectLB.zone_id
-      evaluate_target_health = true
+    name                   = aws_lb.projectLB.dns_name
+    zone_id                = aws_lb.projectLB.zone_id
+    evaluate_target_health = true
   }
 }
 resource "aws_route53_record" "reader1" {
@@ -19,9 +19,9 @@ resource "aws_route53_record" "reader1" {
   type    = "A"
 
   alias {
-      name                   = aws_lb.projectLB.dns_name
-      zone_id                = aws_lb.projectLB.zone_id
-      evaluate_target_health = true
+    name                   = aws_lb.projectLB.dns_name
+    zone_id                = aws_lb.projectLB.zone_id
+    evaluate_target_health = true
   }
 }
 resource "aws_route53_record" "reader2" {
@@ -30,9 +30,9 @@ resource "aws_route53_record" "reader2" {
   type    = "A"
 
   alias {
-      name                   = aws_lb.projectLB.dns_name
-      zone_id                = aws_lb.projectLB.zone_id
-      evaluate_target_health = true
+    name                   = aws_lb.projectLB.dns_name
+    zone_id                = aws_lb.projectLB.zone_id
+    evaluate_target_health = true
   }
 }
 resource "aws_route53_record" "wordpress" {
@@ -41,8 +41,8 @@ resource "aws_route53_record" "wordpress" {
   type    = "A"
 
   alias {
-      name                   = aws_lb.projectLB.dns_name
-      zone_id                = aws_lb.projectLB.zone_id
-      evaluate_target_health = true
+    name                   = aws_lb.projectLB.dns_name
+    zone_id                = aws_lb.projectLB.zone_id
+    evaluate_target_health = true
   }
 }

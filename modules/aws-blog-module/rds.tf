@@ -18,22 +18,22 @@
 # }
 
 resource "aws_db_subnet_group" "private_subnet" {
-  name        = "private_subnet_group"
-  subnet_ids  = aws_subnet.private_subnet[*].id
+  name       = "private_subnet_group"
+  subnet_ids = aws_subnet.private_subnet[*].id
   tags = {
     name = "private subnet group"
   }
 }
 
 resource "aws_db_instance" "project" {
-  allocated_storage    = 20
-  storage_type         = "gp3"
-  db_name              = var.db_info[0]
-  engine               = "mysql"
-  instance_class       = "db.t2.micro"
-  username             = var.db_info[1]
-  password             = var.db_info[2]
-  skip_final_snapshot  = true
-  db_subnet_group_name      = aws_db_subnet_group.private_subnet.name
-  vpc_security_group_ids    = [aws_security_group.projectSG_RDS.id]
+  allocated_storage      = 20
+  storage_type           = "gp3"
+  db_name                = var.db_info[0]
+  engine                 = "mysql"
+  instance_class         = "db.t2.micro"
+  username               = var.db_info[1]
+  password               = var.db_info[2]
+  skip_final_snapshot    = true
+  db_subnet_group_name   = aws_db_subnet_group.private_subnet.name
+  vpc_security_group_ids = [aws_security_group.projectSG_RDS.id]
 }
