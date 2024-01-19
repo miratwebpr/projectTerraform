@@ -1,6 +1,6 @@
 module "aws-blog-module" {
 	source = "./modules/aws-blog-module"
-	region = "us-east-1"
+	region = "us-east-2"
 
 	availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c"]
 
