@@ -4,6 +4,10 @@ name: Terraform Workflow
 on:
   push:
     branches:
+      - '*'
+      - '!main'
+  pull_request:
+    branches:
       - main
 
 jobs:
@@ -39,5 +43,6 @@ jobs:
     - name: Terraform Graph to show dependencies
       run: terraform graph
 
-    # - name: Terraform Destroy
-    #   run: terraform destroy -auto-approve
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -auto-approve
