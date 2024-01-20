@@ -44,5 +44,5 @@ jobs:
       run: terraform graph
 
     - name: Terraform Apply
-      if: github.ref_name == 'main'
+      if: github.event_name == 'pull_request'
       run: terraform apply
